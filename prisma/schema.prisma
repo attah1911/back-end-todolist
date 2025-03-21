@@ -16,15 +16,31 @@ datasource db {
 // npx prisma migrate dev --name init
 // sebelum run command di atas, make sure semua model sudah dibuat dan benar
 
+model ToDoList {
+  id          Int      @id @default(autoincrement())
+  title       String
+  content     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  isDeleted   Boolean  @default(false)
+  userId      Int
+  isCompleted Boolean  @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("todolist")
+}
 
 model User {
-  id Int @id @default(autoincrement())
-  name String
-  email String @unique
-  password String
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  isDeleted Boolean @default(false)
+  isDeleted Boolean  @default(false)
+
+  todolist ToDoList[]
 
   @@map("users")
 }
