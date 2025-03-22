@@ -5,6 +5,7 @@ import createError, { HttpError } from "http-errors";
 import logger from "morgan";
 import { authorize } from "./middleware/auth";
 import authRouter from "./routes/auth.route";
+import listRouter from "./routes/list.route";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(cors({ origin: "*" }));
 
 // routes
 app.use("/api/auth", authRouter);
+app.use("/api/list", authorize, listRouter);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {
