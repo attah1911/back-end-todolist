@@ -7,5 +7,6 @@ export const responses = {
     errorGetToDoList: "Error get list",
     errorCreateToDoList: "Error create list",
     errorUpdateToDoList: "Error update list",
-    errorDeleteToDoList: "Error delete list"
+    errorDeleteToDoList: "Error delete list",
+    successMarkCompleted: "Success put mark"
   }

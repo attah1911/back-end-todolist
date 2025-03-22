@@ -4,7 +4,7 @@ export type List = {
     content: string;
     createdAt: Date;
     updateAt: Date;
-    isCompleted: Boolean;
+    isCompleted: boolean;
 }
 
 export type CreateListDto = {
@@ -16,6 +16,12 @@ export type CreateListDto = {
 export type UpdateListDto = {
     title?: string;
     content?: string;
-    isCompleted?: Boolean;
+    isCompleted?: boolean;
 }
 
+export interface ListFilters {
+    isCompleted?: boolean;
+    search?: string;
+    startDate?: Date;
+    endDate?: Date;
+  }
