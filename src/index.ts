@@ -28,18 +28,18 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 // error handler
-// app.use((err: HttpError, req: Request, res: Response, _next: NextFunction) => {
-//   // set locals, only providing error in development
-//   res.locals.message = err.message;
-//   res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use((err: HttpError, req: Request, res: Response, _next: NextFunction) => {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-//   // send error response
-//   res.status(err.status || 500);
-//   res.json({
-//     message: err.message,
-//     error: req.app.get("env") === "development" ? err : {},
-//   });
-// });
+  // send error response
+  res.status(err.status || 500);
+  res.json({
+    message: err.message,
+    error: req.app.get("env") === "development" ? err : {},
+  });
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
