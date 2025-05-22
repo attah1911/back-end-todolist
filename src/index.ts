@@ -7,6 +7,7 @@ import { authorize } from "./middleware/auth";
 import authRouter from "./routes/auth.route";
 import listRouter from "./routes/list.route";
 import dotenv from "dotenv";
+import { setupSwagger } from "./utils/swagger"; 
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors({ origin: "*" }));
 
+setupSwagger(app);
 // routes
 app.use("/api/auth", authRouter);
 app.use("/api/list", authorize, listRouter);
@@ -26,6 +28,8 @@ app.use("/api/list", authorize, listRouter);
 app.use((req: Request, res: Response, next: NextFunction) => {
   next(createError(404));
 });
+
+
 
 // error handler
 // app.use((err: HttpError, req: Request, res: Response, _next: NextFunction) => {

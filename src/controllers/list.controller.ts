@@ -28,7 +28,7 @@ class ListController {
 
       const filters: ListFilters = {
         search: req.query.search as string,
-        isCompleted: req.query.completed === "true",
+        isCompleted: req.query.completed !== undefined ? req.query.completed === "true" : undefined,
       };
 
       const result = await this.listService.getAllTodos(req.user.id, pagination, filters);
